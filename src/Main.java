@@ -9,9 +9,7 @@ public class Main {
 					+ "1 Add a new contact.\n"
 					+ "2 Modify a contact.\n"
 					+ "3 View a contact's information.\n"
-					+ "4 Remove a contact.\n"
-					+ "5 Check if a contact's weight is ideal.\n"
-					+ "6 Check if a contact is an adult.");
+					+ "4 Remove a contact.");
 			// Check that the user enters a number
 			if (sc.hasNextInt()) {
 				int option = sc.nextInt();
@@ -19,211 +17,92 @@ public class Main {
 				sc.nextLine();
 			    switch ( option ) {
 			        case 1:
+			        	System.out.println("First of all you will enter some information about the person of the new contact.");
 			        	System.out.println("Please, enter the name.");
 	        			String name = sc.next();
-	        			sc.nextLine();
-			        	System.out.println("Please, enter the age.");
-			        	int age = sc.nextInt();
-			        	sc.nextLine();
-			        	System.out.println("Please, enter the weight.");
-			        	int weight = sc.nextInt();
-			        	System.out.println("Please enter the dni if you know it, otherwise leave it empty.");
-			        	String dni = sc.next().trim();
-			        	sc.nextLine();
-			        	if (dni.equals("\n")) {
-			        		Person newPerson = new Person(name,age,weight);
-				        	System.out.println("Please, enter the mobile number.");
-				        	int mobileNum = sc.nextInt();
+	        			boolean contactFound=false;
+	        			for (int i=0;i<agenda.getContactArrayList().size();i++) {
+	        				if (agenda.getContactArrayList().get(i).getPerson().getName().equals(name)) {
+	        					contactFound=true;
+	        					break;
+	        				}
+	        			}
+	        			if (!contactFound) {
+		        			sc.nextLine();
+				        	System.out.println("Please, enter the age.");
+				        	int age = sc.nextInt();
 				        	sc.nextLine();
-				        	System.out.println("Please, enter the address");
-				        	String address = sc.nextLine();
-				        	agenda.addPerson(newPerson, mobileNum, address);
-			        	}else {
-			        		Person newPerson = new Person(name,age,weight,dni);
+				        	System.out.println("Please, enter the weight.");
+				        	int weight = sc.nextInt();
+				        	System.out.println("Please enter the dni if you know it, otherwise enter 'unknown'.");
+				        	String dni = sc.next();
+			        		System.out.println("Now you will enter the missing information about the contact.");
 				        	System.out.println("Please, enter the mobile number.");
-				        	int mobileNum = sc.nextInt();
-				        	sc.nextLine();
-				        	System.out.println("Please, enter the address");
-				        	String address = sc.nextLine();
-				        	agenda.addPerson(newPerson, mobileNum, address);
-			        	}
-			        	System.out.println("The contact was added successfully.");
+				        	if (dni.equals("unknown")) {
+				        		Person newPerson = new Person(name,age,weight);
+					        	int mobileNum = sc.nextInt();
+					        	sc.nextLine();
+					        	System.out.println("Please, enter the address.");
+					        	String address = sc.nextLine();
+					        	agenda.addContact(newPerson, mobileNum, address);
+				        	}else {
+				        		Person newPerson = new Person(name,age,weight,dni);
+				        		
+					        	int mobileNum = sc.nextInt();
+					        	sc.nextLine();
+					        	System.out.println("Please, enter the address.");
+					        	String address = sc.nextLine();
+					        	agenda.addContact(newPerson, mobileNum, address);
+				        	}
+				        	System.out.println("The contact was added successfully.");
+	        			}else {
+	        				System.out.println("You have already added the contact of this person.");
+	        			}
 			            break;
 			        case 2:
-			        	System.out.println("Please, enter the name of the contact");
+			        	System.out.println("Please, enter the name of the contact you want to modify.");
 			        	String modName=sc.next();
-			        	for (int i=0;i<agenda.getPersonArrayList().size();i++) {
-			        		
-			        	}
-			        	System.out.println();
-			            break;
-			        case 3:
-			        	System.out.println("Please, enter a positive number");
-	        			// Open a loop
-			        	boolean finished3=false;
-			        	while (finished3==false) {
-			        		// Check that the user enters a number
-			        		if (sc.hasNextInt()) {
-			        			// Create a string object with the number's value
-			        			String usernumber = sc.next();
-								// Jump the token '/n'
-								sc.nextLine();
-					        	// Check that the number is positive
-					        	if (Integer.parseInt(usernumber)>0) {
-					        		// Print the inverted number
-					        		for (int index=usernumber.length()-1;index>=0;index--) {
-					        			System.out.print(usernumber.charAt(index));
-					        		}
-					        		System.out.print("\n");
-					        		// Get out of the loop
-					        		finished3 = true;
-					        	}
-					        	else {
-					        		System.out.println("That is not a positive number, try it again");
-					        	}
-			        		}
-			        		else {
-			        			System.out.println("That is not a positive number, try it again");
+			        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
+			        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(modName)) {
+			        			System.out.print("Please, enter the new mobile number.");
+			        			int mobileNum = sc.nextInt();
 			        			// Jump the token '/n'
 			        			sc.nextLine();
-			        			
+			        			System.out.print("Please, enter the new address.");
+			        			String address = sc.nextLine();
+			        			agenda.modifyContact(modName, mobileNum, address);
+					        	System.out.println("The contact was modified successfully.");
+			        			break;
+			        		}
+			        		else {
+			        			System.out.println("The contact you want to modify does not exist.");
+			        		}
+			        	}
+			            break;
+			        case 3:
+			        	System.out.println("Please, enter the name of the contact you want to view.");
+			        	String viewName=sc.next();
+			        	System.out.println(viewName);
+			        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
+			        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(viewName)) {
+			        			System.out.println(agenda.showContact(viewName));
+			        			break;
+			        		}else {
+			        			System.out.println("The contact you want to modify does not exist.");
 			        		}
 			        	}
 			            break;
 			        case 4:
-			        	System.out.println("Please, enter a binary number");
-	        			// Open a loop
-			        	boolean finished4 = false;
-			        	while (finished4==false) {
-			        		// Check that the user enters a number
-			        		if (sc.hasNextInt()) {
-			        			// Create a string object with the number's value
-			        			String usernumber = sc.next();
-								// Jump the token '/n'
-								sc.nextLine();
-			        			// Check that all the digits are 1 or 0
-			        			int index = 0;
-			        			boolean encountered = false;
-			        			while ((index < usernumber.length()) && (!encountered)) {
-			        				if (usernumber.charAt(index)!='0' && usernumber.charAt(index)!='1') {
-			        					encountered = true;
-			        				}
-			        			index++;
-			        		    }
-			        		    if (!encountered) {
-			        		    	// Make the conversion from binary to decimal
-			        				double decimal=0;
-			        				int index2=0;
-			        				for (int index3=usernumber.length()-1;index3>=0;index3--) {
-			        					decimal=decimal+ Character.getNumericValue(usernumber.charAt(index3))*Math.pow(2,index2);
-					        			index2++;
-					        		}
-			        				System.out.println("The binary number given's decimal value is: " + decimal);
-			        				// Get out of the loop
-			        				finished4 = true;
-			        			}
-			        			else {
-			        				System.out.println("That is not a binary number, try it again");
-			        			}
-			        		}
-			        		else {
-			        			System.out.println("That is not a binary number, try it again");
-			        			// Jump the token '/n'
-			        			sc.nextLine();
+			        	System.out.println("Please, enter the name of the contact you want to remove.");
+			        	String removeName=sc.next();
+			        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
+			        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(removeName)) {
+			        			agenda.removeContact(removeName);
+			        			break;
+			        		}else {
+			        			System.out.println("The contact you want to remove does not exist.");
 			        		}
 			        	}
-			            break;
-			        case 5:
-			        	System.out.println("Please, enter a sentence.");
-			        	// Create a string object with the user's sentence
-	        			String sentence = sc.nextLine();
-	        			// Open a loop
-			        	boolean finished5=false;
-			        	while (finished5==false) {
-			        		System.out.println("Please, enter a letter.");
-			        		// Create a string object with the user's letter
-			        		String letter = sc.next();
-							// Jump the token '/n'
-							sc.nextLine();
-			        		// Check that the user entered just a character
-							if(letter.length()<2) {
-								// Create an array with the sentence's words
-								String[] words =sentence.split(" ");
-								// Count how many words of the sentence start with the letter of the user
-								int counter=0;
-								for (String word: words) {
-								    if (letter.charAt(0)==word.charAt(0)) {
-								        counter++;
-								    }
-								}
-								System.out.println(counter + " words of the sentence given start with the letter " + letter + ".");
-								// Get out of the loop
-								finished5 = true;
-							}
-							else {
-								System.out.println("Please, enter just a letter.");
-							}
-			        	}
-			            break;
-			        case 6:
-			        	System.out.println("Please, enter a sentence.");
-			        	// Create a string object with the user's sentence
-	        			String sentence2 = sc.nextLine();
-	        			// Open a loop
-			        	boolean finished6=false;
-			        	while (finished6==false) {
-			        		System.out.println("Please, enter a letter.");
-			        		// Create a string object with the user's letter
-			        		String letter = sc.next();
-							// Jump the token '/n'
-							sc.nextLine();
-			        		// Check that the user entered just a character
-							if(letter.length()<2) {
-								// Create an array with the sentence's words
-								String[] words =sentence2.split(" ");
-								// Count how many words of the sentence end with the letter of the user
-								int counter=0;
-								for (String word: words) {
-								    if (letter.charAt(0)==word.charAt(word.length()-1)) {
-								        counter++;
-								    }
-								}
-								System.out.println(counter + " word(s) of the sentence given end with the letter " + letter + ".");
-								// Get out of the loop
-								finished6 = true;	
-							}
-							else {
-								System.out.println("Please, enter just a letter.");
-							}
-			        	}
-			            break;
-			        case 7:
-			        	System.out.println("Please, enter a word.");
-			        	// Create a string object with the user's token
-			        	String word = sc.next();
-						// Jump the token '/n'
-						sc.nextLine();
-			        	// Define a variable with the value of the word's last index number
-			        	int index2 = word.length()-1;
-			        	int index=0;
-			        	// Control if the word's inverted characters are equal
-			        	boolean encountered= false;
-			        	while (!encountered && index2>=0) {
-			        		if (word.charAt(index)!=word.charAt(index2)) {
-			        			encountered=true;
-			        		}
-			        		index++;
-			        		index2--;
-			        	}
-	        			if (encountered) {
-	        	        	System.out.println("The word given isn't palindrome");
-	        			}
-	        			else {
-	        	        	System.out.println("The word given is palindrome");
-	        			}
-			            break;
-			        default:
-			        	System.out.println("You didn't select a possible option");
 			            break;
 			   	}
 			}

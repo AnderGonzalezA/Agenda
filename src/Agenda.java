@@ -1,74 +1,47 @@
 import java.util.ArrayList;
 public class Agenda {
-	private ArrayList<Person> personArrayList= new ArrayList<Person>();
-	private ArrayList<ArrayList<String>> personInformation= new ArrayList<ArrayList<String>>();
-	public ArrayList<ArrayList<String>> getPersonArrayList(){
-		return personInformation;
+	private ArrayList<Contact> contactArrayList = new ArrayList<Contact>();
+	public ArrayList<Contact> getContactArrayList(){
+		return contactArrayList;
 	}
-	public void addPerson(Person newPerson,int mobileNum,String address) {
-		boolean personFound=false;
-		for (int i=0;i<personArrayList.size();i++) {
-			if (personArrayList.get(i).getName().equals(newPerson.getName())) {
-				personFound=true;
+	public void addContact(Person person,int mobileNum,String address) {
+		boolean contactFound=false;
+		for (int i=0;i<contactArrayList.size();i++) {
+			if (contactArrayList.get(i).getPerson().getName().equals(person.getName())) {
+				contactFound=true;
 				break;
 			}
 		}
-		if (!personFound) {
-			personArrayList.add(newPerson);
-			ArrayList<String> newPersonArrayList = new ArrayList<String>();
-			newPersonArrayList.add(newPerson.getName());
-			newPersonArrayList.add(String.valueOf(mobileNum));
-			newPersonArrayList.add(address);
-			personInformation.add(newPersonArrayList);
+		if (!contactFound) {
+			contactArrayList.add(new Contact(person,mobileNum,address));
 		}
 	}
-	public void modifyPerson(String name,int age,int weight,String dni,int mobileNum,String address) {
-		for (int i=0;i<personArrayList.size();i++) {
-			if (personArrayList.get(i).getName().equals(name)) {
-				personArrayList.remove(i);
-				personArrayList.add(new Person(name,age,weight,dni));
-				break;
-			}
-		}
-		for (int i=0;i<personInformation.size();i++) {
-			if (personInformation.get(i).get(0).equals(name)){
-				personInformation.remove(i);
-				ArrayList<String> newPerson = new ArrayList<String>();
-				newPerson.add(name);
-				newPerson.add(String.valueOf(mobileNum));
-				newPerson.add(address);
-				personInformation.add(newPerson);
+	public void modifyContact(String name,int mobileNum,String address) {
+		for (int i=0;i<contactArrayList.size();i++) {
+			if (contactArrayList.get(i).getPerson().getName().equals(name)) {
+				Person modPerson = new Person(name,contactArrayList.get(i).getPerson().getAge(),contactArrayList.get(i).getPerson().getWeight(),contactArrayList.get(i).getPerson().getDni());
+				Contact modContact = new Contact(modPerson,mobileNum,address);
+				contactArrayList.remove(i);
+				contactArrayList.add(modContact);
 				break;
 			}
 		}
 	}
-	public void removePerson(String name) {
-		for (int i=0;i<personArrayList.size();i++) {
-			if (personArrayList.get(i).getName().equals(name)) {
-				personArrayList.remove(i);
-				break;
-			}
-		}
-		for (int i=0;i<personInformation.size();i++) {
-			if (personInformation.get(i).get(0).equals(name)){
-				personInformation.remove(i);
+	public void removeContact(String name) {
+		for (int i=0;i<contactArrayList.size();i++) {
+			if (contactArrayList.get(i).getPerson().getName().equals(name)) {
+				contactArrayList.remove(i);
 				break;
 			}
 		}
 	}
-	public String showPerson(String name){
+	public String showContact(String name){
 		String information = "";
-		int i=0;
-		boolean personFound=false;
-		while (!personFound && i<personArrayList.size()) {
-			for (int j=0;j<personInformation.size();j++) {
-				if (name.equals(personArrayList.get(i).getName()) && personInformation.get(j).get(0).equals(personArrayList.get(i).getName())){
-					information=information+personArrayList.get(i).toString()+" "+personInformation.get(j).get(1)+" "+personInformation.get(j).get(2);
-					personFound=true;
-					break;
-				}
+		for (int i=0;i<contactArrayList.size();i++) {
+			if (contactArrayList.get(i).getPerson().getName().equals(name)){
+				information=information+contactArrayList.get(i).getPerson().toString()+" "+contactArrayList.get(i).getMobileNum()+" "+contactArrayList.get(i).getAddress();
+				break;
 			}
-			i++;
 		}
 		return information;
 	}
