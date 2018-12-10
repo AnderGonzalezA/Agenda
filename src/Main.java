@@ -1,12 +1,13 @@
+import com.zubiri.agenda.*;
 import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		Agenda agenda = new Agenda();
 		Scanner sc = new Scanner(System.in);
+		System.out.print("Please, select an option:\n");
 	    boolean finished = false;
 	    while (finished == false) {
-			System.out.print("Please, select an option:\n"
-					+ "1 Add a new contact.\n"
+			System.out.println("1 Add a new contact.\n"
 					+ "2 Modify a contact.\n"
 					+ "3 View a contact's information.\n"
 					+ "4 Remove a contact.\n"

@@ -1,5 +1,7 @@
+package com.zubiri.agenda;
+
 public class Contact {
-	private Person person = new Person();
+	private Person person;
 	private int mobileNum = 0;
 	private String address = "";
 	public Contact(Person person, int mobileNum, String address){
@@ -15,6 +17,9 @@ public class Contact {
 	}
 	public String getAddress() {
 		return this.address;
+	}
+	public void setPerson(Person person) {
+		this.person=person;
 	}
 	public void setMobileNum(int mobileNum) {
 		this.mobileNum=mobileNum;

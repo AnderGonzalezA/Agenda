@@ -1,3 +1,4 @@
+package com.zubiri.agenda;
 import java.util.Random;
 public class Person {
 	private String name="";
@@ -23,14 +24,11 @@ public class Person {
 		this.name=name;
 		if (age>0&&age<100) {
 			this.age=age;
-		}else {
-			System.out.println("You didn't enter a real age.");
 		}
 		if (weight>0&&weight<150) {
 			this.weight=weight;
-		}else {
-			System.out.println("You didn't enter a real weight.");
 		}
+		this.dni=dniByDefault();
 	}
 	public void setName(String name) {
 		this.name=name;
@@ -41,8 +39,6 @@ public class Person {
 	public void setAge(int age) {
 		if (age>0&&age<100) {
 			this.age=age;
-		}else {
-			System.out.println("You didn't enter a real age.");
 		}
 	}
 	public int getAge() {
@@ -51,8 +47,6 @@ public class Person {
 	public void setWeight(int weight) {
 		if (weight>0&&weight<150) {
 			this.weight=weight;
-		}else {
-			System.out.println("You didn't enter a real weight.");
 		}
 	}
 	public int getWeight() {
@@ -71,43 +65,33 @@ public class Person {
 				if (dni.charAt(8)!='0'&&dni.charAt(8)!='1'&&dni.charAt(8)!='2'&&dni.charAt(8)!='3'&&dni.charAt(8)!='4'&&dni.charAt(8)!='5'&&dni.charAt(8)!='6'&&dni.charAt(8)!='7'&&dni.charAt(8)!='8'&&dni.charAt(8)!='9') {
 					this.dni=dni;
 				}
-				else {
-					System.out.println("You didn't enter a real dni.");
-				}
 			}
-			else {
-				System.out.println("You didn't enter a real dni.");
-			}
-		}else {
-			System.out.println("You didn't enter a real dni.");
 		}
 	}
 	public String getDni() {
 		return dni;
 	}
-	public String idealWeight() {
+	public boolean idealWeight() {
 		if (this.weight==70) {
-			return name+"'s weight is ideal.";
-		}else {
-			return name+"'s weight is not ideal.";
+			return true;
 		}
+		return false;
 	}
 	public String toString() {
 		return name + " " + String.valueOf(age) + " " + String.valueOf(weight) + " " + dni;
 	}
-	public void dniByDefault(){
+	public String dniByDefault(){
 		String dniString=String.valueOf(new Random().nextInt(9));
 		for (int i=0;i<8;i++) {
 			dniString=dniString+String.valueOf(new Random().nextInt(9));
 		}
 		String alphabet="abcdefghijklmnopqrstuvWxyz";
-		dni=dniString+String.valueOf(alphabet.charAt(new Random().nextInt(alphabet.length())));
+		return dniString+String.valueOf(alphabet.charAt(new Random().nextInt(alphabet.length())));
 	}
-	public String isAdult() {
-		if (age>18) {
-			return name +" is adult.";
-		}else {
-			return name + " is not adult.";
+	public boolean isAdult() {
+		if (age>=18) {
+			return true;
 		}
+		return false;
 	}
 }

@@ -1,3 +1,5 @@
+package com.zubiri.agenda;
+
 import java.util.ArrayList;
 public class Agenda {
 	private ArrayList<Contact> contactArrayList = new ArrayList<Contact>();
