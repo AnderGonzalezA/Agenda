@@ -19,10 +19,8 @@ public class Agenda {
 	public void modifyContact(String name,int mobileNum,String address) {
 		for (int i=0;i<contactArrayList.size();i++) {
 			if (contactArrayList.get(i).getPerson().getName().equals(name)) {
-				Person modPerson = new Person(name,contactArrayList.get(i).getPerson().getAge(),contactArrayList.get(i).getPerson().getWeight(),contactArrayList.get(i).getPerson().getDni());
-				Contact modContact = new Contact(modPerson,mobileNum,address);
-				contactArrayList.remove(i);
-				contactArrayList.add(modContact);
+				contactArrayList.get(i).setMobileNum(mobileNum);
+				contactArrayList.get(i).setAddress(address);
 				break;
 			}
 		}

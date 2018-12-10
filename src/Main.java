@@ -9,7 +9,8 @@ public class Main {
 					+ "1 Add a new contact.\n"
 					+ "2 Modify a contact.\n"
 					+ "3 View a contact's information.\n"
-					+ "4 Remove a contact.");
+					+ "4 Remove a contact.\n"
+					+ "0 Close the agenda.");
 			// Check that the user enters a number
 			if (sc.hasNextInt()) {
 				int option = sc.nextInt();
@@ -34,21 +35,19 @@ public class Main {
 				        	sc.nextLine();
 				        	System.out.println("Please, enter the weight.");
 				        	int weight = sc.nextInt();
-				        	System.out.println("Please enter the dni if you know it, otherwise enter 'unknown'.");
+				        	System.out.println("Please enter the dni if you know it, otherwise enter 'unknown' and I will assign a random one to him/her.");
 				        	String dni = sc.next();
 			        		System.out.println("Now you will enter the missing information about the contact.");
 				        	System.out.println("Please, enter the mobile number.");
+				        	int mobileNum = sc.nextInt();
 				        	if (dni.equals("unknown")) {
 				        		Person newPerson = new Person(name,age,weight);
-					        	int mobileNum = sc.nextInt();
 					        	sc.nextLine();
 					        	System.out.println("Please, enter the address.");
 					        	String address = sc.nextLine();
 					        	agenda.addContact(newPerson, mobileNum, address);
-				        	}else {
+				        	}else{
 				        		Person newPerson = new Person(name,age,weight,dni);
-				        		
-					        	int mobileNum = sc.nextInt();
 					        	sc.nextLine();
 					        	System.out.println("Please, enter the address.");
 					        	String address = sc.nextLine();
@@ -82,7 +81,6 @@ public class Main {
 			        case 3:
 			        	System.out.println("Please, enter the name of the contact you want to view.");
 			        	String viewName=sc.next();
-			        	System.out.println(viewName);
 			        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
 			        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(viewName)) {
 			        			System.out.println(agenda.showContact(viewName));
@@ -104,6 +102,9 @@ public class Main {
 			        		}
 			        	}
 			            break;
+			        case 5:
+			        	finished=true;
+			        	break;
 			   	}
 			}
 			else {
@@ -111,31 +112,6 @@ public class Main {
 				// Jump the token '/n'
 				sc.nextLine();
 			}
-			// Ask if the user wants to see the menu again or not
-		    System.out.println("Would you like to see the menu again?(y/n)");
-		    // Open a loop
-		    boolean goback = false;
-		    while (goback == false) {
-		    	// Create a string object with the user's token
-			   	String back = sc.next();
-				// Jump the token '/n'
-				sc.nextLine();
-			   	switch ( back ) {
-			   	case "y":
-			   		// Get out of the loop and print the menu again
-			   		goback = true;
-			   		break;
-			   	case "n":
-			   		// Get out of the loop and terminate the program
-			   		goback = true;
-			   		finished = true;
-			   		break;
-			   	default:
-			   		// Ask for a possible value again
-			   		System.out.println("Please, select a possible value(y/n)");
-			   		break;
-			   	}
-		    }
 	    }
         sc.close();
 		/*Agenda agenda = new Agenda();
