@@ -2,7 +2,7 @@
 * The Person program implements a class that
 * can be used to create person objects which will hold people's personal information and their methods.
 *
-* @author  Ander Gonzalez
+* @author  AnderGonzalez
 * @version 1.0
 * @since   2018-11-12 
 */

@@ -2,7 +2,7 @@
 * The Agenda program implements a class that
 * can be used to create agenda objects which will hold contact's information.
 *
-* @author  Ander Gonzalez
+* @author  AnderGonzalez
 * @version 1.0
 * @since   2018-11-12
 */
@@ -13,6 +13,9 @@ public class Agenda {
 	private ArrayList<Contact> contactArrayList = new ArrayList<Contact>();
 	public ArrayList<Contact> getContactArrayList(){
 		return contactArrayList;
+	}
+	public void setContactArrayList(ArrayList<Contact> contactArrayList){
+		this.contactArrayList=contactArrayList;
 	}
 	public void addContact(Person person,int mobileNum,String address) {
 		boolean contactFound=false;
