@@ -86,7 +86,7 @@ public class Person {
 			dniString=dniString+String.valueOf(new Random().nextInt(9));
 		}
 		String alphabet="abcdefghijklmnopqrstuvWxyz";
-		return dniString+String.valueOf(alphabet.charAt(new Random().nextInt(alphabet.length())));
+		return dniString+String.valueOf(alphabet.charAt(new Random().nextInt(alphabet.length()))).toUpperCase();
 	}
 	public boolean isAdult() {
 		if (age>=18) {

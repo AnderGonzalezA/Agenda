@@ -60,50 +60,65 @@ public class Main {
 	        			}
 			            break;
 			        case 2:
-			        	System.out.println("Please, enter the name of the contact you want to modify.");
-			        	String modName=sc.next();
-			        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
-			        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(modName)) {
-			        			System.out.print("Please, enter the new mobile number.");
-			        			int mobileNum = sc.nextInt();
-			        			// Jump the token '/n'
-			        			sc.nextLine();
-			        			System.out.print("Please, enter the new address.");
-			        			String address = sc.nextLine();
-			        			agenda.modifyContact(modName, mobileNum, address);
-					        	System.out.println("The contact was modified successfully.");
-			        			break;
-			        		}
-			        		else {
-			        			System.out.println("The contact you want to modify does not exist.");
-			        		}
+			        	if (agenda.getContactArrayList().size()!=0) {
+				        	System.out.println("Please, enter the name of the contact you want to modify.");
+				        	String modName=sc.next();
+				        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
+				        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(modName)) {
+				        			System.out.print("Please, enter the new mobile number.");
+				        			int mobileNum = sc.nextInt();
+				        			// Jump the token '/n'
+				        			sc.nextLine();
+				        			System.out.print("Please, enter the new address.");
+				        			String address = sc.nextLine();
+				        			agenda.modifyContact(modName, mobileNum, address);
+						        	System.out.println("The contact was modified successfully.");
+				        			break;
+				        		}
+				        		if (i==agenda.getContactArrayList().size()-1){
+				        			System.out.println("The contact you want to view does not exist.");
+				        		}
+				        	}
+			        	}else {
+			        		System.out.println("There is not any contact in your agenda.");
 			        	}
 			            break;
 			        case 3:
-			        	System.out.println("Please, enter the name of the contact you want to view.");
-			        	String viewName=sc.next();
-			        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
-			        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(viewName)) {
-			        			System.out.println(agenda.showContact(viewName));
-			        			break;
-			        		}else {
-			        			System.out.println("The contact you want to modify does not exist.");
-			        		}
+			        	if (agenda.getContactArrayList().size()!=0) {
+				        	System.out.println("Please, enter the name of the contact you want to view.");
+				        	String viewName=sc.next();
+				        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
+				        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(viewName)) {
+				        			System.out.println(agenda.showContact(viewName));
+				        			break;
+				        		}
+				        		if (i==agenda.getContactArrayList().size()-1){
+				        			System.out.println("The contact you want to remove does not exist.");
+				        		}
+				        	}
+			        	}else {
+			        		System.out.println("There is not any contact in your agenda.");
 			        	}
 			            break;
 			        case 4:
-			        	System.out.println("Please, enter the name of the contact you want to remove.");
-			        	String removeName=sc.next();
-			        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
-			        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(removeName)) {
-			        			agenda.removeContact(removeName);
-			        			break;
-			        		}else {
-			        			System.out.println("The contact you want to remove does not exist.");
-			        		}
+			        	if (agenda.getContactArrayList().size()!=0) {
+				        	System.out.println("Please, enter the name of the contact you want to remove.");
+				        	String removeName=sc.next();
+				        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
+				        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(removeName)) {
+				        			agenda.removeContact(removeName);
+						        	System.out.println("The contact was removed successfully.");
+				        			break;
+				        		}
+				        		if (i==agenda.getContactArrayList().size()-1){
+				        			System.out.println("The contact you want to modify does not exist.");
+				        		}
+				        	}
+			        	}else {
+			        		System.out.println("There is not any contact in your agenda.");
 			        	}
 			            break;
-			        case 5:
+			        case 0:
 			        	finished=true;
 			        	break;
 			   	}
@@ -115,16 +130,5 @@ public class Main {
 			}
 	    }
         sc.close();
-		/*Agenda agenda = new Agenda();
-		Person firstPerson = new Person("Xabi", 21, 70, "12345678A");
-		agenda.addPerson(firstPerson,655555555,"address");
-		System.out.println(agenda.showPerson("Xabi"));
-		Person secondPerson = new Person("Koldo", 18, 70, "12345678A");
-		agenda.addPerson(secondPerson,655555555,"address");
-		System.out.println(agenda.showPerson("Koldo"));
-		agenda.modifyPerson("Koldo", 20, 72, "87654321B", 677777777, "address2");
-		System.out.println(agenda.showPerson("Koldo"));
-		agenda.removePerson("Xabi");
-		System.out.println(agenda.showPerson("Xabi"));*/
 	}
 }
