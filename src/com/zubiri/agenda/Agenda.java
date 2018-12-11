@@ -4,7 +4,7 @@
 *
 * @author  Ander Gonzalez
 * @version 1.0
-* @since   2018-11-12 
+* @since   2018-11-12
 */
 package com.zubiri.agenda;
 
