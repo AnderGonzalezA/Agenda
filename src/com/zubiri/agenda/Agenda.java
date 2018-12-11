@@ -1,3 +1,11 @@
+/**
+* The Agenda program implements a class that
+* can be used to create agenda objects which will hold contact's information.
+*
+* @author  Ander Gonzalez
+* @version 1.0
+* @since   2018-11-12 
+*/
 package com.zubiri.agenda;
 
 import java.util.ArrayList;
