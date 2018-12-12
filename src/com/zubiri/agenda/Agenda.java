@@ -11,9 +11,29 @@ package com.zubiri.agenda;
 import java.util.ArrayList;
 public class Agenda {
 	private ArrayList<Contact> contactArrayList = new ArrayList<Contact>();
+	/**
+
+     * Agenda default constructor
+
+     */
+	public Agenda() {}
+	/**
+
+     * Contact ArrayList getter method
+
+     * @return The contact ArrayList
+
+     */
 	public ArrayList<Contact> getContactArrayList(){
 		return contactArrayList;
 	}
+	/**
+
+     * Contact ArrayList setter method
+
+     * @param contactArrayList The new contact ArrayList
+
+     */
 	public void setContactArrayList(ArrayList<Contact> contactArrayList){
 		this.contactArrayList=contactArrayList;
 	}
@@ -22,8 +42,8 @@ public class Agenda {
      * Method that adds a new contact to the ArrayList "contactArrayList"
 
      * @param person The person whose contact will be added
-     * @param mobileNum The mobile number of the contact
-     * @param address The address of the contact
+     * @param mobileNum The mobile number
+     * @param address The address
 
      */
 	public void addContact(Person person,int mobileNum,String address) {
@@ -76,7 +96,7 @@ public class Agenda {
      * Method that returns the information of a contact from the ArrayList "contactArrayList"
 
      * @param name The name of the person whose contact's information will be returned
-     * @return 
+     * @return The information of the person whose name is entered as an argument
 
      */
 	public String showContact(String name){

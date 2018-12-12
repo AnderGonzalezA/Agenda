@@ -22,6 +22,7 @@ public class Main {
 			        	System.out.println("First of all you will enter some information about the person of the new contact.");
 			        	System.out.println("Please, enter the name.");
 	        			String name = sc.next();
+	        			sc.nextLine();
 	        			boolean contactFound=false;
 	        			for (int i=0;i<agenda.getContactArrayList().size();i++) {
 	        				if (agenda.getContactArrayList().get(i).getPerson().getName().equals(name)) {
@@ -30,7 +31,6 @@ public class Main {
 	        				}
 	        			}
 	        			if (!contactFound) {
-		        			sc.nextLine();
 				        	System.out.println("Please, enter the age.");
 				        	int age = sc.nextInt();
 				        	sc.nextLine();
@@ -41,15 +41,14 @@ public class Main {
 			        		System.out.println("Now you will enter the missing information about the contact.");
 				        	System.out.println("Please, enter the mobile number.");
 				        	int mobileNum = sc.nextInt();
+		        			sc.nextLine();
 				        	if (dni.equals("unknown")) {
 				        		Person newPerson = new Person(name,age,weight);
-					        	sc.nextLine();
 					        	System.out.println("Please, enter the address.");
 					        	String address = sc.nextLine();
 					        	agenda.addContact(newPerson, mobileNum, address);
 				        	}else{
 				        		Person newPerson = new Person(name,age,weight,dni);
-					        	sc.nextLine();
 					        	System.out.println("Please, enter the address.");
 					        	String address = sc.nextLine();
 					        	agenda.addContact(newPerson, mobileNum, address);
@@ -63,6 +62,7 @@ public class Main {
 			        	if (agenda.getContactArrayList().size()!=0) {
 				        	System.out.println("Please, enter the name of the contact you want to modify.");
 				        	String modName=sc.next();
+		        			sc.nextLine();
 				        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
 				        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(modName)) {
 				        			System.out.print("Please, enter the new mobile number.");
@@ -76,7 +76,7 @@ public class Main {
 				        			break;
 				        		}
 				        		if (i==agenda.getContactArrayList().size()-1){
-				        			System.out.println("The contact you want to view does not exist.");
+				        			System.out.println("The contact you want to modify does not exist.");
 				        		}
 				        	}
 			        	}else {
@@ -87,13 +87,14 @@ public class Main {
 			        	if (agenda.getContactArrayList().size()!=0) {
 				        	System.out.println("Please, enter the name of the contact you want to view.");
 				        	String viewName=sc.next();
+		        			sc.nextLine();
 				        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
 				        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(viewName)) {
 				        			System.out.println(agenda.showContact(viewName));
 				        			break;
 				        		}
 				        		if (i==agenda.getContactArrayList().size()-1){
-				        			System.out.println("The contact you want to remove does not exist.");
+				        			System.out.println("The contact you want to view does not exist.");
 				        		}
 				        	}
 			        	}else {
@@ -104,6 +105,7 @@ public class Main {
 			        	if (agenda.getContactArrayList().size()!=0) {
 				        	System.out.println("Please, enter the name of the contact you want to remove.");
 				        	String removeName=sc.next();
+		        			sc.nextLine();
 				        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
 				        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(removeName)) {
 				        			agenda.removeContact(removeName);
@@ -111,7 +113,7 @@ public class Main {
 				        			break;
 				        		}
 				        		if (i==agenda.getContactArrayList().size()-1){
-				        			System.out.println("The contact you want to modify does not exist.");
+				        			System.out.println("The contact you want to remove does not exist.");
 				        		}
 				        	}
 			        	}else {
