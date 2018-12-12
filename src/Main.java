@@ -88,7 +88,7 @@ public class Main {
 		        			sc.nextLine();
 				        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
 				        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(viewName)) {
-				        			System.out.println(agenda.showContact(viewName));
+				        			System.out.println(agenda.returnContact(viewName));
 				        			break;
 				        		}
 				        		if (i==agenda.getContactArrayList().size()-1){

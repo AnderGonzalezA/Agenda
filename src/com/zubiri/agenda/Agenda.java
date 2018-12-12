@@ -97,7 +97,7 @@ public class Agenda {
      * @return The information of the person whose name is entered as an argument
 
      */
-	public String showContact(String name){
+	public String returnContact(String name){
 		String information = "";
 		for (int i=0;i<contactArrayList.size();i++) {
 			if (contactArrayList.get(i).getPerson().getName().equals(name)){
