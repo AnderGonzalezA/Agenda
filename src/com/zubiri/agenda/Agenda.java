@@ -2,9 +2,9 @@
 * The Agenda program implements a class that
 * can be used to create agenda objects which will hold contact's information.
 *
-* @author  Ander Gonzalez
+* @author AnderGonzalez
 * @version 1.0
-* @since   2018-11-12
+* @since 2018-11-12
 */
 package com.zubiri.agenda;
 
@@ -41,21 +41,19 @@ public class Agenda {
 
      * Method that adds a new contact to the ArrayList "contactArrayList"
 
-     * @param person The person whose contact will be added
-     * @param mobileNum The mobile number
-     * @param address The address
+     * @param contact The contact that will be added
 
      */
-	public void addContact(Person person,int mobileNum,String address) {
+	public void addContact(Contact contact) {
 		boolean contactFound=false;
 		for (int i=0;i<contactArrayList.size();i++) {
-			if (contactArrayList.get(i).getPerson().getName().equals(person.getName())) {
+			if (contactArrayList.get(i).getPerson().getName().equals(contact.getPerson().getName())) {
 				contactFound=true;
 				break;
 			}
 		}
 		if (!contactFound) {
-			contactArrayList.add(new Contact(person,mobileNum,address));
+			contactArrayList.add(contact);
 		}
 	}
 	/**

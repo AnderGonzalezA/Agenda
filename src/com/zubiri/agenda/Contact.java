@@ -2,9 +2,9 @@
 * The Contact program implements a class that
 * can be used to create contact objects which will hold people's mobile number and address and their methods.
 *
-* @author  Ander Gonzalez
+* @author AnderGonzalez
 * @version 1.0
-* @since   2018-11-12 
+* @since 2018-11-12 
 */
 package com.zubiri.agenda;
 

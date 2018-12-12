@@ -43,15 +43,13 @@ public class Main {
 				        	int mobileNum = sc.nextInt();
 		        			sc.nextLine();
 				        	if (dni.equals("unknown")) {
-				        		Person newPerson = new Person(name,age,weight);
 					        	System.out.println("Please, enter the address.");
 					        	String address = sc.nextLine();
-					        	agenda.addContact(newPerson, mobileNum, address);
+					        	agenda.addContact(new Contact(new Person(name,age,weight), mobileNum, address));
 				        	}else{
-				        		Person newPerson = new Person(name,age,weight,dni);
 					        	System.out.println("Please, enter the address.");
 					        	String address = sc.nextLine();
-					        	agenda.addContact(newPerson, mobileNum, address);
+					        	agenda.addContact(new Contact(new Person(name,age,weight,dni), mobileNum, address));
 				        	}
 				        	System.out.println("The contact was added successfully.");
 	        			}else {
