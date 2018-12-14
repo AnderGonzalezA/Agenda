@@ -46,7 +46,7 @@ public class Person {
 	}
 	/**
 
-     * Person constructor that which will assign the dni randomly.
+     * Person constructor that which will assign the dni randomly
 
      * @param name The name
      * @param age The age

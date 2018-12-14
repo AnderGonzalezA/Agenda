@@ -23,14 +23,7 @@ public class Main {
 			        	System.out.println("Please, enter the name.");
 	        			String name = sc.next();
 	        			sc.nextLine();
-	        			boolean contactFound=false;
-	        			for (int i=0;i<agenda.getContactArrayList().size();i++) {
-	        				if (agenda.getContactArrayList().get(i).getPerson().getName().equals(name)) {
-	        					contactFound=true;
-	        					break;
-	        				}
-	        			}
-	        			if (!contactFound) {
+	        			if (agenda.findContact(name)==-1) {
 				        	System.out.println("Please, enter the age.");
 				        	int age = sc.nextInt();
 				        	sc.nextLine();
@@ -42,13 +35,11 @@ public class Main {
 				        	System.out.println("Please, enter the mobile number.");
 				        	int mobileNum = sc.nextInt();
 		        			sc.nextLine();
+				        	System.out.println("Please, enter the address.");
+				        	String address = sc.nextLine();
 				        	if (dni.equals("unknown")) {
-					        	System.out.println("Please, enter the address.");
-					        	String address = sc.nextLine();
 					        	agenda.addContact(new Contact(new Person(name,age,weight), mobileNum, address));
 				        	}else{
-					        	System.out.println("Please, enter the address.");
-					        	String address = sc.nextLine();
 					        	agenda.addContact(new Contact(new Person(name,age,weight,dni), mobileNum, address));
 				        	}
 				        	System.out.println("The contact was added successfully.");
@@ -57,62 +48,55 @@ public class Main {
 	        			}
 			            break;
 			        case 2:
-			        	if (agenda.getContactArrayList().size()!=0) {
+			        	if (agenda.getContacts().size()!=0) {
 				        	System.out.println("Please, enter the name of the contact you want to modify.");
 				        	String modName=sc.next();
 		        			sc.nextLine();
-				        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
-				        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(modName)) {
+				        	if (agenda.findContact(modName)!=-1) {
 				        			System.out.print("Please, enter the new mobile number.");
 				        			int mobileNum = sc.nextInt();
 				        			// Jump the token '/n'
 				        			sc.nextLine();
 				        			System.out.print("Please, enter the new address.");
 				        			String address = sc.nextLine();
-				        			agenda.modifyContact(modName, mobileNum, address);
+				        			//agenda.getContact(agenda.findContact(modName)).setMobileNum(mobileNum);
+				        			//agenda.getContact(agenda.findContact(modName)).setAddress(address);
+				        			agenda.modifyContact(agenda.findContact(modName),new Contact (agenda.getContact(agenda.findContact(modName)).getPerson(),mobileNum, address));
 						        	System.out.println("The contact was modified successfully.");
 				        			break;
-				        		}
-				        		if (i==agenda.getContactArrayList().size()-1){
+				        	}else{
 				        			System.out.println("The contact you want to modify does not exist.");
-				        		}
 				        	}
 			        	}else {
 			        		System.out.println("There is not any contact in your agenda.");
 			        	}
 			            break;
 			        case 3:
-			        	if (agenda.getContactArrayList().size()!=0) {
+			        	if (agenda.getContacts().size()!=0) {
 				        	System.out.println("Please, enter the name of the contact you want to view.");
 				        	String viewName=sc.next();
 		        			sc.nextLine();
-				        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
-				        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(viewName)) {
-				        			System.out.println(agenda.returnContact(viewName));
-				        			break;
-				        		}
-				        		if (i==agenda.getContactArrayList().size()-1){
-				        			System.out.println("The contact you want to view does not exist.");
-				        		}
+				        	if (agenda.findContact(viewName)!=-1) {
+				        		System.out.println(agenda.getContact(agenda.findContact(viewName)).getPerson().toString()+ " " + agenda.getContact(agenda.findContact(viewName)).getMobileNum() + " " + agenda.getContact(agenda.findContact(viewName)).getAddress());
+				        	}
+				        	else {
+				        		System.out.println("The contact you want to view does not exist.");
 				        	}
 			        	}else {
 			        		System.out.println("There is not any contact in your agenda.");
 			        	}
 			            break;
 			        case 4:
-			        	if (agenda.getContactArrayList().size()!=0) {
+			        	if (agenda.getContacts().size()!=0) {
 				        	System.out.println("Please, enter the name of the contact you want to remove.");
 				        	String removeName=sc.next();
 		        			sc.nextLine();
-				        	for (int i=0;i<agenda.getContactArrayList().size();i++) {
-				        		if (agenda.getContactArrayList().get(i).getPerson().getName().equals(removeName)) {
-				        			agenda.removeContact(removeName);
-						        	System.out.println("The contact was removed successfully.");
-				        			break;
-				        		}
-				        		if (i==agenda.getContactArrayList().size()-1){
-				        			System.out.println("The contact you want to remove does not exist.");
-				        		}
+				        	if (agenda.findContact(removeName)!=-1) {
+				        		agenda.removeContact(agenda.findContact(removeName));
+						       	System.out.println("The contact was removed successfully.");
+				        	}
+				        	else {
+				        		System.out.println("The contact you want to remove does not exist.");
 				        	}
 			        	}else {
 			        		System.out.println("There is not any contact in your agenda.");
