@@ -6,6 +6,8 @@ public class Note {
 
      * Note full constructor
 
+     * @param text The text
+
      */
 	public Note(String text) {
 		this.text=text;
@@ -14,7 +16,7 @@ public class Note {
 
      * Text setter method
 
-     * @param text The new name
+     * @param text The new text
 
      */
 	public void setText(String text) {

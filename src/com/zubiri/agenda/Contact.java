@@ -100,9 +100,9 @@ public class Contact {
 	}
 	/**
 
-     * Address setter method
+     * Note setter method
 
-     * @param address The new address
+     * @param note The new note
 
      */
 	public void setNote(Note note) {

@@ -147,7 +147,7 @@ public class Agenda {
 
      * Method that adds a new contact to the ArrayList "favoriteContacts"
 
-     * @param contact The new favorite contact
+     * @param favContact The new favorite contact
 
      */
 	public void addFavoriteContact(Contact favContact) {
@@ -157,7 +157,7 @@ public class Agenda {
 
      * Method that removes a contact from the ArrayList "favoriteContacts"
 
-     * @param index The index of the favorite contact that will be removed
+     * @param remContact The favorite contact that will be removed
 
      */
 	public void removeFavoriteContact(Contact remContact) {
