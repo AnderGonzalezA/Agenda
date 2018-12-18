@@ -27,7 +27,7 @@ public class Person {
      * @param name The name
      * @param age The age
      * @param weight The weight
-     * @param dni The dni
+     * @param dni The DNI
 
      */
 	public Person(String name,int age,int weight,String dni) {
@@ -35,18 +35,14 @@ public class Person {
 		this.dni=dni;
 		if (age>0&&age<100) {
 			this.age=age;
-		}else {
-			System.out.println("You didn't enter a real age.");
 		}
 		if (weight>0&&weight<150) {
 			this.weight=weight;
-		}else {
-			System.out.println("You didn't enter a real weight.");
 		}
 	}
 	/**
 
-     * Person constructor that which will assign the dni randomly
+     * Person constructor which will assign the DNI randomly
 
      * @param name The name
      * @param age The age
@@ -129,9 +125,9 @@ public class Person {
 	}
 	/**
 
-     * Dni setter method
+     * DNI setter method
 
-     * @param dni The new dni
+     * @param dni The new DNI
 
      */
 	public void setDni(String dni) {
@@ -152,9 +148,9 @@ public class Person {
 	}
 	/**
 
-     * Dni getter method
+     * DNI getter method
 
-     * @return The dni
+     * @return The DNI
 
      */
 	public String getDni() {
@@ -185,9 +181,9 @@ public class Person {
 	}
 	/**
 
-     * Method that returns a random dni
+     * Method that returns a random DNI
 
-     * @return A random dni
+     * @return A random DNI
 
      */
 	public String dniByDefault(){
@@ -200,7 +196,7 @@ public class Person {
 	}
 	/**
 
-     * Method that returns if the person has is adult or not
+     * Method that returns if the person is adult or not
 
      * @return If the person is adult true, otherwise false
 

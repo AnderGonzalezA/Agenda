@@ -12,6 +12,8 @@ public class Contact {
 	private Person person;
 	private int mobileNum = 0;
 	private String address = "";
+	private Note note= new Note("");
+	//private boolean favorite = false;
 	/**
 
      * Contact constructor
@@ -58,6 +60,16 @@ public class Contact {
 	}
 	/**
 
+     * Note getter method
+
+     * @return The note
+
+     */
+	public Note getNote() {
+		return this.note;
+	}
+	/**
+
      * Person setter method
 
      * @param person The new person of the contact
@@ -86,4 +98,20 @@ public class Contact {
 	public void setAddress(String address) {
 		this.address=address;
 	}
+	/**
+
+     * Address setter method
+
+     * @param address The new address
+
+     */
+	public void setNote(Note note) {
+		this.note=note;
+	}
+	/*public void setFavorite(boolean favorite) {
+		this.favorite=favorite;
+	}
+	public boolean getFavorite(){
+		return this.favorite;
+	}*/
 }
